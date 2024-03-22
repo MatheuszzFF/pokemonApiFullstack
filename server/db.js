@@ -18,6 +18,7 @@ export function addPokemon(name,sprite) {
         db.run('INSERT INTO pokemons (name, sprite) VALUES (?, ?)', [name, sprite], 
         function(err) {
             if(err) return reject(err)
+            console.log("Pokemon Adicionado!")
             resolve(this.lastID);
         })
     })
