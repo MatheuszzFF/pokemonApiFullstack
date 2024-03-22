@@ -25,7 +25,6 @@ app.post('/store-pokemon', async (req, res) => {
   }
 });
 
-// Rota para obter todos os Pokemons do banco de dados
 app.get('/pokemons', async (req, res) => {
   try {
     const pokemons = await getAllPokemons();
@@ -36,7 +35,6 @@ app.get('/pokemons', async (req, res) => {
   }
 });
 
-// Inicia o servidor na porta 3000
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
