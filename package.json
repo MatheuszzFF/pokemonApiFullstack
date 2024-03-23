@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "sass": "sass --watch public/assets/scss/style.scss:style.css",
     "preview": "vite preview",
     "start": "node server/server.js"
   },
