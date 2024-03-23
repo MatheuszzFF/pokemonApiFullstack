@@ -1,0 +1,214 @@
+&.grass, .grass {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-grass.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeGrass;
+    }
+}
+
+&.fire, .fire {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-fire.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeFire;
+    }
+}
+
+&.bug, .bug {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-bug.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeBug;
+    }
+}
+
+&.water, .water {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-water.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeWater;
+    }
+}
+
+&.normal, .normal {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-normal.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeNormal;
+    }
+}
+
+&.electric, .electric {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-eletric.svg);
+        }
+    }
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeElectric;
+    }
+}
+
+&.flying, .flying {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-flying.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeFlying;
+    }
+}
+
+&.poison, .poison {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-poison.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypePoison;
+    }
+}
+
+&.fairy, .fairy {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-fairy.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeFairy;
+    }
+}
+
+&.dragon, .dragon {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-dragon.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeDragon;
+    }
+}
+
+&.ground, .ground {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-ground.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeGround;
+    }
+}
+
+&.fighting, .fighting {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-fighting.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeFighting;
+    }
+}
+
+&.psychic, .psychic {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-psychic.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypePsychic;
+    }
+}
+
+&.rock, .rock {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-rock.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeRock;
+    }
+}
+
+&.steel, .steel {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-steel.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeSteel;
+    }
+}
+
+&.ghost, .ghost {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-ghost.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeGhost;
+    }
+}
+
+&.ice, .ice {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-ice.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeIce;
+    }
+}
+
+&.dark, .dark {
+    .radiusImage {
+        background: {
+            image: url(/assets/img/pokemon/types/background/background-dark.svg);
+        }
+    }
+
+    &.type-icon, .tooltip {
+        background-color: $pokemonTypeDark;
+    }
+}

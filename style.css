@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: #232323;
+}
+
+.pokemon {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-auto-rows: 300px;
+  grid-gap: 70px;
+}
+.pokemon__card {
+  padding: 30px 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.12), 10px 10px 25px rgba(174, 174, 192, 0.12);
+  border-radius: 25px;
+  gap: 15px;
+  background-color: #1E1E1E;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.pokemon__card .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.pokemon__card .top span {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.pokemon__card .top .pokemon-types-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+.pokemon__card .top .pokemon-types-card .type-icon {
+  border-radius: 50%;
+  padding: 11px 11px 6px 10px;
+  transition: 0.3s;
+  position: relative;
+  cursor: help;
+}
+.pokemon__card .top .pokemon-types-card .type-icon img {
+  width: 30px;
+}
+.pokemon__card .top .pokemon-types-card .type-icon .tooltip {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  padding: 10px;
+  border-radius: 4px;
+  color: white;
+  transition: 0.3s;
+  font-weight: 500;
+  font-size: 18px;
+}
+.pokemon__card .top .pokemon-types-card .type-icon + .type-icon {
+  margin-left: 10px;
+}
+.pokemon__card .top .pokemon-types-card .type-icon:hover {
+  filter: saturate(200%);
+}
+.pokemon__card .top .pokemon-types-card .type-icon:hover .tooltip {
+  opacity: 1;
+  pointer-events: normal;
+}
+.pokemon__card .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.pokemon__card .content h4 {
+  color: #fff;
+  font-size: 22px;
+}
+.pokemon__card .radiusImage {
+  background: linear-gradient(135deg, rgb(239, 239, 242) 45%, rgb(255, 255, 255) 82%);
+  height: 250px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.pokemon__card .radiusImage img {
+  position: relative;
+  object-fit: contain;
+  z-index: 3;
+  height: 180px;
+  margin-top: -30px;
+}
+.pokemon__card .radiusImage img.shadow {
+  position: absolute;
+  bottom: -56px;
+  filter: brightness(0.2) blur(10px);
+  opacity: 0.9;
+  transform: rotatex(96deg);
+  width: 40%;
+  z-index: 1;
+}
+.pokemon__card.grass .radiusImage, .pokemon__card .grass .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-grass.svg);
+}
+.pokemon__card.grass.type-icon, .pokemon__card.grass .tooltip, .pokemon__card .grass.type-icon, .pokemon__card .grass .tooltip {
+  background-color: #5FBD58;
+}
+.pokemon__card.fire .radiusImage, .pokemon__card .fire .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-fire.svg);
+}
+.pokemon__card.fire.type-icon, .pokemon__card.fire .tooltip, .pokemon__card .fire.type-icon, .pokemon__card .fire .tooltip {
+  background-color: #FBA54C;
+}
+.pokemon__card.bug .radiusImage, .pokemon__card .bug .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-bug.svg);
+}
+.pokemon__card.bug.type-icon, .pokemon__card.bug .tooltip, .pokemon__card .bug.type-icon, .pokemon__card .bug .tooltip {
+  background-color: #92BC2C;
+}
+.pokemon__card.water .radiusImage, .pokemon__card .water .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-water.svg);
+}
+.pokemon__card.water.type-icon, .pokemon__card.water .tooltip, .pokemon__card .water.type-icon, .pokemon__card .water .tooltip {
+  background-color: #539DDF;
+}
+.pokemon__card.normal .radiusImage, .pokemon__card .normal .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-normal.svg);
+}
+.pokemon__card.normal.type-icon, .pokemon__card.normal .tooltip, .pokemon__card .normal.type-icon, .pokemon__card .normal .tooltip {
+  background-color: #A0A29F;
+}
+.pokemon__card.electric .radiusImage, .pokemon__card .electric .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-eletric.svg);
+}
+.pokemon__card.electric.type-icon, .pokemon__card.electric .tooltip, .pokemon__card .electric.type-icon, .pokemon__card .electric .tooltip {
+  background-color: #F2D94E;
+}
+.pokemon__card.flying .radiusImage, .pokemon__card .flying .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-flying.svg);
+}
+.pokemon__card.flying.type-icon, .pokemon__card.flying .tooltip, .pokemon__card .flying.type-icon, .pokemon__card .flying .tooltip {
+  background-color: #A1BBEC;
+}
+.pokemon__card.poison .radiusImage, .pokemon__card .poison .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-poison.svg);
+}
+.pokemon__card.poison.type-icon, .pokemon__card.poison .tooltip, .pokemon__card .poison.type-icon, .pokemon__card .poison .tooltip {
+  background-color: #B763CF;
+}
+.pokemon__card.fairy .radiusImage, .pokemon__card .fairy .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-fairy.svg);
+}
+.pokemon__card.fairy.type-icon, .pokemon__card.fairy .tooltip, .pokemon__card .fairy.type-icon, .pokemon__card .fairy .tooltip {
+  background-color: #EE90E6;
+}
+.pokemon__card.dragon .radiusImage, .pokemon__card .dragon .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-dragon.svg);
+}
+.pokemon__card.dragon.type-icon, .pokemon__card.dragon .tooltip, .pokemon__card .dragon.type-icon, .pokemon__card .dragon .tooltip {
+  background-color: #0C69C8;
+}
+.pokemon__card.ground .radiusImage, .pokemon__card .ground .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-ground.svg);
+}
+.pokemon__card.ground.type-icon, .pokemon__card.ground .tooltip, .pokemon__card .ground.type-icon, .pokemon__card .ground .tooltip {
+  background-color: #DA7C4D;
+}
+.pokemon__card.fighting .radiusImage, .pokemon__card .fighting .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-fighting.svg);
+}
+.pokemon__card.fighting.type-icon, .pokemon__card.fighting .tooltip, .pokemon__card .fighting.type-icon, .pokemon__card .fighting .tooltip {
+  background-color: #D3425F;
+}
+.pokemon__card.psychic .radiusImage, .pokemon__card .psychic .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-psychic.svg);
+}
+.pokemon__card.psychic.type-icon, .pokemon__card.psychic .tooltip, .pokemon__card .psychic.type-icon, .pokemon__card .psychic .tooltip {
+  background-color: #FA8581;
+}
+.pokemon__card.rock .radiusImage, .pokemon__card .rock .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-rock.svg);
+}
+.pokemon__card.rock.type-icon, .pokemon__card.rock .tooltip, .pokemon__card .rock.type-icon, .pokemon__card .rock .tooltip {
+  background-color: #C9BB8A;
+}
+.pokemon__card.steel .radiusImage, .pokemon__card .steel .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-steel.svg);
+}
+.pokemon__card.steel.type-icon, .pokemon__card.steel .tooltip, .pokemon__card .steel.type-icon, .pokemon__card .steel .tooltip {
+  background-color: #5695A3;
+}
+.pokemon__card.ghost .radiusImage, .pokemon__card .ghost .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-ghost.svg);
+}
+.pokemon__card.ghost.type-icon, .pokemon__card.ghost .tooltip, .pokemon__card .ghost.type-icon, .pokemon__card .ghost .tooltip {
+  background-color: #5F6DBC;
+}
+.pokemon__card.ice .radiusImage, .pokemon__card .ice .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-ice.svg);
+}
+.pokemon__card.ice.type-icon, .pokemon__card.ice .tooltip, .pokemon__card .ice.type-icon, .pokemon__card .ice .tooltip {
+  background-color: #75D0C1;
+}
+.pokemon__card.dark .radiusImage, .pokemon__card .dark .radiusImage {
+  background-image: url(/assets/img/pokemon/types/background/background-dark.svg);
+}
+.pokemon__card.dark.type-icon, .pokemon__card.dark .tooltip, .pokemon__card .dark.type-icon, .pokemon__card .dark .tooltip {
+  background-color: #595761;
+}
+.pokemon__card:hover {
+  position: relative;
+  transform: translatey(-30px);
+}
+
+/*# sourceMappingURL=style.css.map */
