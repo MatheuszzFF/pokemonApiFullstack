@@ -57,7 +57,7 @@ function createPokemonCard(pokemon:TPokemon) {
     createPokemonHTML(pokemonDiv, pokemon)
     
     pokemonDiv.addEventListener("click", () => {
-        storePokemon(pokemon.name, pokemon.sprites.front_default)
+        storePokemon(pokemon.id)
     })
     return pokemonDiv
 }

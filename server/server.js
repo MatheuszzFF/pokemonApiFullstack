@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import WebSocket,{WebSocketServer} from "ws";
 import { addPokemon, getAllPokemons } from './db.js'
 
 const app = express();
@@ -9,15 +10,31 @@ app.use(bodyParser.json());
 
 
 app.post('/store-pokemon', async (req, res) => {
-  const { name, sprite } = req.body;
+  const { id } = req.body;
 
-  if (!name || !sprite) {
-    return res.status(400).json({ error: 'Name and sprite are required' });
+  if (!id) {
+    return res.status(400).json({ error: 'pokemon id required' });
+  }
+
+  const allSavedPokemons = await getAllPokemons()
+  const haveThePokemon = allSavedPokemons.filter(({pokemonId}) => pokemonId === id)
+  
+  if(haveThePokemon.length > 0) {
+    res.status(201).json({ 
+      message: "You already have this pokemon saved",
+      alreadyHavePokemon: true
+    });
+    return
   }
 
   try {
-    const pokemonId = await addPokemon(name, sprite);
-    res.status(201).json({ id: pokemonId, name, sprite });
+    await addPokemon(id);
+    res.status(201).json({ 
+      message: "Pokemon list updated!",
+      alreadyHavePokemon: false
+    });
+    pokemonUpdate()
+    
   } catch (error) {
     console.error('Error storing Pokemon:', error.message);
     res.status(500).json({ error: 'Internal server error' });
@@ -27,6 +44,7 @@ app.post('/store-pokemon', async (req, res) => {
 app.get('/pokemons', async (req, res) => {
   try {
     const pokemons = await getAllPokemons();
+    res.setHeader('Content-Type', 'application/json'); // Definindo o Content-Type para application/json
     res.json(pokemons);
   } catch (error) {
     console.error('Error fetching Pokemons:', error.message);
@@ -34,7 +52,32 @@ app.get('/pokemons', async (req, res) => {
   }
 });
 
+function pokemonUpdate() {
+  wss.clients.forEach(async client => {
+    if(client.readyState === WebSocket.OPEN) {
+      const pokemons = await getAllPokemons();
+      const pokemonJson = JSON.stringify(pokemons)
+      client.send(pokemonJson)
+    }
+  })
+}
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+const wss = new WebSocketServer({ server });
+
+wss.on('connection', (ws) => {
+  console.log("success connecting websocket")
+
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
+
+  ws.on("message", (msg) => {
+    
+  })
+})
+
+

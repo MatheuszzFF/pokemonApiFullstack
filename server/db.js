@@ -7,15 +7,14 @@ db.serialize(() => {
     db.run(`
       CREATE TABLE IF NOT EXISTS pokemons (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        sprite TEXT
+        pokemonId INTEGER
       )
     `);
 });
 
-export function addPokemon(name,sprite) {
+export function addPokemon(id) {
     return new Promise((resolve, reject) => {
-        db.run('INSERT INTO pokemons (name, sprite) VALUES (?, ?)', [name, sprite], 
+        db.run('INSERT INTO pokemons (pokemonId) VALUES (?)', [id], 
         function(err) {
             if(err) return reject(err)
             resolve(this.lastID);

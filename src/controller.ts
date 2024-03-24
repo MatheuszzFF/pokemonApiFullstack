@@ -9,13 +9,9 @@ const loadMorePokemonsBtn:HTMLButtonElement | null = document.querySelector(".js
 const filterPokemonsInput:HTMLInputElement | null = document.querySelector(".js-filterPokemons")
 let globalNextUrl: string;
 
-
-
 async function filterPokemonsByName(value: string) {
     if(value.length === 0)  {
-        if(pokemonMainDiv) {
-            pokemonMainDiv.textContent = "";
-        }
+        if(pokemonMainDiv) pokemonMainDiv.textContent = ""
         runPokemonApp(pokeApiUrl)
     }
     if(value.length <= 3) return
@@ -36,16 +32,13 @@ async function filterPokemonsByName(value: string) {
 }
 
 function returnAllPokemonsPromise(pokemons: TPokemon[]) {
-    return pokemons.map(pokemon => {
-        return fetchPokemonData(pokemon.url)
-    })
+    return pokemons.map(pokemon => fetchPokemonData(pokemon.url))
 }
 
 async function runPokemonApp(apiUrl:string) {
     let pokemonResults =  await fetchPokemonData(apiUrl)
     let allPokemons = await Promise.all(returnAllPokemonsPromise(pokemonResults.results))
     globalNextUrl = pokemonResults.next
-    
     pokemonMainDiv && showPokemonsCards(pokemonMainDiv, allPokemons)
 }
 
