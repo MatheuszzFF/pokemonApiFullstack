@@ -1,0 +1,35 @@
+header {
+    padding: 15px 0;
+    background-color: $darkTheme2;
+    box-shadow: 2px 2px 2px $darkTheme1;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+
+    .pokemonList {
+        position: fixed;
+        right: -100%;
+        width: 350px;
+        background-color: $darkTheme2;
+        height: 100%;
+        top: 30px;
+        z-index: 5;
+        transition: .3s;
+        overflow: auto;
+
+        &.active {
+            right: 0%;
+        }
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        width: 30px;
+    }
+}

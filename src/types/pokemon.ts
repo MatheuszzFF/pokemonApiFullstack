@@ -18,3 +18,8 @@ export type TPokemon = {
     sprites: Sprites;
     url: string
 }
+
+export type TStoredPokemons = {
+    id: number,
+    pokemonId: number,
+}

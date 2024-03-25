@@ -1,0 +1,14 @@
+.home {
+    display: flex;
+    gap: 20px;
+
+    aside {
+        background-color: $darkTheme2;
+        padding-top: 30px;
+    }
+
+    .pokemons {
+        padding: 30px;
+        width: 100%;
+    }
+}

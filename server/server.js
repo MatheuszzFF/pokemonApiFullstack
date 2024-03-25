@@ -10,6 +10,8 @@ const app = express();
 app.use(cors())
 app.use(bodyParser.json());
 
+let previousPokemons;
+
 app.post('/store-pokemon', async (req, res) => {
   const { id } = req.body;
   if (!id) return res.status(400).json({ error: 'pokemon id required' });
@@ -31,7 +33,7 @@ app.post('/store-pokemon', async (req, res) => {
       message: "Pokemon list updated!",
       alreadyHavePokemon: false
     });
-    sendUpdatedPokemonList()
+    sendNewPokemon()
     
   } catch (error) {
     console.error('Error storing Pokemon:', error.message);
@@ -42,6 +44,7 @@ app.post('/store-pokemon', async (req, res) => {
 app.get('/pokemons', async (req, res) => {
   try {
     const pokemons = await getAllPokemons();
+    previousPokemons = pokemons;
     res.status(201).json(pokemons);
   } catch (error) {
     console.error('Error fetching Pokemons:', error.message);
@@ -49,12 +52,16 @@ app.get('/pokemons', async (req, res) => {
   }
 });
 
-function sendUpdatedPokemonList() {
+function sendNewPokemon() {
   wss.clients.forEach(async client => {
     if(client.readyState === WebSocket.OPEN) {
       const pokemons = await getAllPokemons();
-      const pokemonJson = JSON.stringify(pokemons)
+      const pokemonToSend = pokemons.filter(pokemon => {
+        return !previousPokemons.some(oldPokemon => oldPokemon.pokemonId === pokemon.pokemonId);
+      })
+      const pokemonJson = JSON.stringify(pokemonToSend)
       client.send(pokemonJson)
+      previousPokemons = pokemons
     }
   })
 }
@@ -72,10 +79,6 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     console.log('Client disconnected');
   });
-
-  ws.on("message", (msg) => {
-    
-  })
 })
 
 

@@ -1,6 +1,8 @@
-import { TPokemon } from "./types/pokemon"
-import { fetchPokemonData } from "./model"
-import { showPokemonsCards } from "./view"
+import { TPokemon, TStoredPokemons } from "./types/pokemon"
+import { fetchData, fetchPokemonsById, updatePokemonList } from "./model"
+import { showPokemonsCards, createPokemonListElement } from "./view"
+import { DomActions } from "./nodeElementsConfig"
+import { initFirebase } from "./user"
 
 const pokeApiUrl: string = "https://pokeapi.co/api/v2/pokemon?limit=24&offset=0"
 const allPokemonsUrl: string = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
@@ -17,7 +19,7 @@ async function filterPokemonsByName(value: string) {
     }
     if(value.length <= 3) return
 
-    let pokemonResults =  await fetchPokemonData(allPokemonsUrl)
+    let pokemonResults =  await fetchData(allPokemonsUrl)
     let pokemonFiltered = [];
 
     pokemonFiltered = pokemonResults.results.filter((pokemon: TPokemon) => {
@@ -33,17 +35,24 @@ async function filterPokemonsByName(value: string) {
 }
 
 function returnAllPokemonsPromise(pokemons: TPokemon[]) {
-    return pokemons.map(pokemon => fetchPokemonData(pokemon.url))
+    return pokemons.map(pokemon => fetchData(pokemon.url))
 }
 
 async function runPokemonApp(apiUrl:string) {
-    let pokemonResults =  await fetchPokemonData(apiUrl)
+    let pokemonResults =  await fetchData(apiUrl)
     let allPokemons = await Promise.all(returnAllPokemonsPromise(pokemonResults.results))
     globalNextUrl = pokemonResults.next
     pokemonMainDiv && showPokemonsCards(pokemonMainDiv, allPokemons)
 }
 
-function init() {
+async function returnPokemonList() {
+    const pokemons:TStoredPokemons[] = await fetchData("http://localhost:3000/pokemons");
+    const pokemonPromises = fetchPokemonsById(pokemons)
+
+    return await Promise.all(pokemonPromises)
+}
+
+async function init() {
     runPokemonApp(pokeApiUrl)
     loadMorePokemonsBtn && loadMorePokemonsBtn.addEventListener("click", () => runPokemonApp(globalNextUrl))
     filterPokemonsInput && filterPokemonsInput.addEventListener("keyup", (e) => {
@@ -51,6 +60,14 @@ function init() {
         const value = target.value;
         value && filterPokemonsByName(value)
     })
+    const storedPokemons = await returnPokemonList() 
+    storedPokemons.forEach((pokemon:TPokemon) => {
+        createPokemonListElement(pokemon)
+    })
+
+    updatePokemonList(createPokemonListElement)
 }
 
 init()
+DomActions.init();
+initFirebase();

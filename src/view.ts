@@ -1,6 +1,7 @@
 import { storePokemon } from "./model"
 import { TPokemon, TType } from "./types/pokemon"
 
+
 function createTypesHTML (receivedTypes: TType[]) {
     return receivedTypes.map((theType) => {
         const typeName = theType.type.name;
@@ -44,6 +45,7 @@ function createPokemonHTML(element:HTMLDivElement, pokemon: TPokemon) {
         </div>
     `
 }
+
 function createPokemonCard(pokemon:TPokemon) {
     let pokemonDiv:HTMLDivElement = document.createElement("div")
     pokemonDiv.classList.add("pokemon__card")
@@ -62,4 +64,15 @@ export function showPokemonsCards(mainDivElement: HTMLDivElement,pokemons:TPokem
 
     pokemonElements.forEach((element) => DOMFragment.appendChild(element))
     mainDivElement && mainDivElement.appendChild(DOMFragment)
+}
+
+
+export function createPokemonListElement(pokemon: TPokemon) {
+    const pokemonListElement: HTMLDivElement | null = document.querySelector(".js-pokemonList")
+    console.log(pokemon)
+    if(pokemonListElement) {
+        pokemonListElement.innerHTML += `
+            <li>${pokemon.name}</li>
+        `
+    }
 }

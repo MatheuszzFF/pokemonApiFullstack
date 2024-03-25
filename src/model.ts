@@ -1,5 +1,7 @@
+import { TPokemon } from "./types/pokemon";
+const POKE_API_BASE_URL = "https://pokeapi.co/api/v2"
 
-export async function fetchPokemonData(url:string) {
+export async function fetchData(url:string) {
     let req = await fetch(url)
     let res = await req.json();
     return res
@@ -24,13 +26,28 @@ export async function storePokemon(id: number) {
     }
 }
 
-const ws = new WebSocket('ws://localhost:3000'); 
-console.log(ws)
-ws.onopen = (ws) => {
-  console.log("front end connection started")
-  console.log(ws);
+export function fetchPokemonsById(pokemons: {id: number, pokemonId: number}[]) {
+  return pokemons.map(async ({pokemonId}) => {
+      const req = await fetch(`${POKE_API_BASE_URL}/pokemon/${pokemonId}`);
+      const res = await req.json();
+      return res
+  })
 }
 
-ws.onmessage = (event) => {
-  console.log(JSON.parse(event.data));
+export function updatePokemonList(callback: (pokemons: TPokemon) => void) {
+  const ws = new WebSocket('ws://localhost:3000'); 
+  console.log(ws)
+  ws.onopen = (event) => {
+    console.log("front end connection started")
+  }
+  
+  ws.onmessage = async (event) => {
+    const pokemonUpdated = JSON.parse(event.data)
+    console.log({"updatedPokemon": pokemonUpdated})
+    const pokemons = await Promise.all(fetchPokemonsById(pokemonUpdated))
+    console.log(event)
+    pokemons.forEach((pokemon: TPokemon) => {
+      callback(pokemon)
+    })
+  }
 }

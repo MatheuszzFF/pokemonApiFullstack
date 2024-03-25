@@ -15,25 +15,32 @@
   </head>
   <body>
     <header>
-      <div class="js-filterPokemons">
-          <input class="js-filterPokemons" type="text">
-      </div>
-
-      <div class="js-openPokemonList">
-          Abrir lista de pokemons!
-
-          <div class="js-pokemonList">
-          </div>
+      <div class="container">
+        <div class="logo">
+          <h1><img src="/assets/img/logo.png" alt="" srcset=""></h1>
+        </div>
+        <div class="js-openPokemonList button">
+            Abrir lista de pokemons!
+            
+        </div>
+        <div class="js-pokemonList pokemonList">
+        </div>
       </div>
     </header>
-    <main>
-      <div class="container">
-        <div class="pokemon js-pokemons"></div>
-      </div>
-  
-      <div class="js-load-more-pokemons" >
-          Carregar mais Pokemons!
-      </div>
+    <main class="home">
+      <aside>
+        <div class="js-filterPokemons">
+          <input class="js-filterPokemons" type="text">
+        </div>
+      </aside>
+      <section class="pokemons">
+        <div class="container">
+          <div class="pokemon js-pokemons"></div>
+        </div>
+        <div class="js-load-more-pokemons" >
+            Carregar mais Pokemons!
+        </div>
+      </section>
     </main>
     <script type="module" src="/src/controller.ts"></script>
   </body>

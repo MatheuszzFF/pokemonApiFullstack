@@ -1,4 +1,10 @@
 @import "base/variables";
 @import "base/reboot";
 
+@import "global/header";
+
 @import "components/pokemon/pokemonCard";
+@import "components/UI/button";
+
+@import "pages/home";
+
