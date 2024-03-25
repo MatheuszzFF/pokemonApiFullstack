@@ -18,14 +18,23 @@
       <div class="js-filterPokemons">
           <input class="js-filterPokemons" type="text">
       </div>
-    </header>
-    <div class="container">
-      <div class="pokemon js-pokemons"></div>
-    </div>
 
-    <div class="js-load-more-pokemons" >
-        Carregar mais Pokemons!
-    </div>
+      <div class="js-openPokemonList">
+          Abrir lista de pokemons!
+
+          <div class="js-pokemonList">
+          </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="pokemon js-pokemons"></div>
+      </div>
+  
+      <div class="js-load-more-pokemons" >
+          Carregar mais Pokemons!
+      </div>
+    </main>
     <script type="module" src="/src/controller.ts"></script>
   </body>
 </html>

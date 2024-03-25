@@ -1,7 +1,5 @@
 import { storePokemon } from "./model"
 import { TPokemon, TType } from "./types/pokemon"
-const loadMorePokemonsBtn:HTMLButtonElement | null = document.querySelector(".js-load-more-pokemons")
-const filterPokemonsInput:HTMLInputElement | null = document.querySelector(".js-filterPokemons")
 
 function createTypesHTML (receivedTypes: TType[]) {
     return receivedTypes.map((theType) => {
@@ -36,18 +34,15 @@ function createPokemonHTML(element:HTMLDivElement, pokemon: TPokemon) {
             <ul class="pokemon-types-card">
                 ${createTypesHTML(types)}
             </ul>
-
-            </div>
-            <div class="radiusImage">
-                <img src="${image}">
-                <img class="shadow" src="${image}">
-            </div>
-            <div class="content">
-                <h4>${name.substring(0,1).toUpperCase() + name.substring(1).replace("-", " ")}</h4>
-            </div>
+        </div>
+        <div class="radiusImage">
+            <img src="${image}">
+            <img class="shadow" src="${image}">
+        </div>
+        <div class="content">
+            <h4>${name.substring(0,1).toUpperCase() + name.substring(1).replace("-", " ")}</h4>
         </div>
     `
-    
 }
 function createPokemonCard(pokemon:TPokemon) {
     let pokemonDiv:HTMLDivElement = document.createElement("div")
@@ -56,21 +51,15 @@ function createPokemonCard(pokemon:TPokemon) {
 
     createPokemonHTML(pokemonDiv, pokemon)
     
-    pokemonDiv.addEventListener("click", () => {
-        storePokemon(pokemon.id)
-    })
+    pokemonDiv.addEventListener("click", () => storePokemon(pokemon.id))
     return pokemonDiv
 }
 
 export function showPokemonsCards(mainDivElement: HTMLDivElement,pokemons:TPokemon[]) {
     const DOMFragment = document.createDocumentFragment();
-
-    const pokemonElements = pokemons.map(pokemon => {
-        return createPokemonCard(pokemon)
-    })
+    const pokemonElements = pokemons
+    .map(pokemon => createPokemonCard(pokemon))
 
     pokemonElements.forEach((element) => DOMFragment.appendChild(element))
-    if(mainDivElement) {
-        mainDivElement.appendChild(DOMFragment)
-    }
+    mainDivElement && mainDivElement.appendChild(DOMFragment)
 }

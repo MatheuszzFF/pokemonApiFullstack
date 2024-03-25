@@ -18,19 +18,11 @@ export async function storePokemon(id: number) {
       const data = await response.json();
       console.log(data.message);
       if(data.alreadyHavePokemon) return
-      console.log(await getAllStoredPokemons())
       
     } catch (error: any) {
       console.error('Error storing Pokemon:', error.message);
     }
 }
-
-export async function getAllStoredPokemons() {
-    const url = 'http://localhost:3000/pokemons'
-    const req = await fetch(url)
-    const res = await req.json();
-    console.log(res)
-} 
 
 const ws = new WebSocket('ws://localhost:3000'); 
 console.log(ws)

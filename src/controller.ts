@@ -10,7 +10,8 @@ const filterPokemonsInput:HTMLInputElement | null = document.querySelector(".js-
 let globalNextUrl: string;
 
 async function filterPokemonsByName(value: string) {
-    if(value.length === 0)  {
+    console.log(value.length)
+    if(value.length === 0 )  {
         if(pokemonMainDiv) pokemonMainDiv.textContent = ""
         runPokemonApp(pokeApiUrl)
     }
