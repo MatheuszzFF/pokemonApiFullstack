@@ -5,8 +5,6 @@ export class DomActions {
     private headerElement: HTMLHeadElement | null;
     private mainElement: HTMLElement| null;
 
-
-
    constructor() {
         this.pokemonListButton = document.querySelector(".js-openPokemonList")
         this.pokemonListElement = document.querySelector(".js-pokemonList")

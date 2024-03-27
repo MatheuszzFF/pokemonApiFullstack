@@ -2,7 +2,6 @@ import { TPokemon, TStoredPokemons } from "./types/pokemon"
 import { fetchData, fetchPokemonsById, updatePokemonList } from "./model"
 import { showPokemonsCards, createPokemonListElement } from "./view"
 import { DomActions } from "./nodeElementsConfig"
-import { initFirebase } from "./user"
 
 const pokeApiUrl: string = "https://pokeapi.co/api/v2/pokemon?limit=24&offset=0"
 const allPokemonsUrl: string = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
@@ -70,4 +69,3 @@ async function init() {
 
 init()
 DomActions.init();
-initFirebase();
